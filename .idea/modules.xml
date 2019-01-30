@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/garden-box.iml" filepath="$PROJECT_DIR$/.idea/modules/garden-box.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/garden-box_main.iml" filepath="$PROJECT_DIR$/.idea/modules/garden-box_main.iml" group="garden-box" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/garden-box_test.iml" filepath="$PROJECT_DIR$/.idea/modules/garden-box_test.iml" group="garden-box" />
+    </modules>
+  </component>
+</project>
