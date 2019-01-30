@@ -1,6 +1,7 @@
 package org.launchcode.gardenbox.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -10,8 +11,9 @@ import javax.xml.ws.RequestWrapper;
 public class HelloController {
 
     @RequestMapping(value = "")
-    @ResponseBody
-    public String index() {
-        return "Hello World, Testing!";
+    public String index (Model model) {
+
+        return "index";
     }
+
 }
