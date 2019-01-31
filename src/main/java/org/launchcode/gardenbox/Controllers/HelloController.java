@@ -13,7 +13,7 @@ public class HelloController {
     @RequestMapping(value = "")
     public String index (Model model) {
 
-        return "index";
+        return "fragments";
     }
 
 }
