@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+<h3 th:text="${title}">Default</h3>
+
+<form method="post" style="max-width:600px;" th:object="${plant}">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="type">Type</label>
+        <select name="type">
+            <option th:each="plantType : ${plantTypes}"
+                    th:text="${plantType.name}"
+                    th:value="${plantType}"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label th:for="companionsId">Companion Plants:</label>
+        <select multiple="form-control" name="companionsId">
+            <option th:each="plant: ${plants}"
+                    th:text="${plant.name}"
+                    th:value="${plant.id}"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label th:for="avoided">Avoived Pairings:</label>
+        <select multiple="form-control" name="avoided">
+            <option th:each="plant: ${plants}"
+                    th:text="${plant.name}"
+                    th:value="${plant.id}"></option>
+        </select>
+    </div>
+
+    <input type="submit" value="add Plant" />
+</form>
+
+</body>
+</html>

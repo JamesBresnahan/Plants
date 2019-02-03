@@ -17,17 +17,15 @@ public class Plant {
     @Size(min=3, max=15)
     private String name;
 
-    @ManyToOne
     private PlantType type;
 
-    @ManyToMany
-    private List<Plant> companionPlants;
+    public Plant (){
 
-    @ManyToMany
-    private List<Plant> avoidedPlants;
+    }
 
-
-
+    public Plant (PlantType type){
+        this.type= type;
+    }
 
     public int getId() {
         return id;
@@ -49,19 +47,4 @@ public class Plant {
         this.type = type;
     }
 
-    public List<Plant> getCompanionPlants() {
-        return companionPlants;
-    }
-
-    public void addCompanionPlant(Plant companionPlant) {
-        companionPlants.add(companionPlant);
-    }
-
-    public List<Plant> getAvoidedPlants() {
-        return avoidedPlants;
-    }
-
-    public void addAvoidedPlants(Plant avoidedPlant) {
-        companionPlants.add(avoidedPlant);
-    }
 }
