@@ -27,6 +27,7 @@ public class PlantController {
     @RequestMapping(value = "list")
     public String listPlants (Model model) {
         model.addAttribute("title", "Add a Plant");
+        model.addAttribute("plants", plantDao.findAll());
         return "plants/list";
     }
 
