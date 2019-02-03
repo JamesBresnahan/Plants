@@ -1,10 +1,10 @@
 package org.launchcode.gardenbox.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Plant {
@@ -13,10 +13,20 @@ public class Plant {
     @GeneratedValue
     private int id;
 
+    @NotNull
+    @Size(min=3, max=15)
     private String name;
 
-    @OneToOne
+    @ManyToOne
     private PlantType type;
+
+    @ManyToMany
+    private List<Plant> companionPlants;
+
+    @ManyToMany
+    private List<Plant> avoidedPlants;
+
+
 
 
     public int getId() {
@@ -39,5 +49,19 @@ public class Plant {
         this.type = type;
     }
 
+    public List<Plant> getCompanionPlants() {
+        return companionPlants;
+    }
 
+    public void addCompanionPlant(Plant companionPlant) {
+        companionPlants.add(companionPlant);
+    }
+
+    public List<Plant> getAvoidedPlants() {
+        return avoidedPlants;
+    }
+
+    public void addAvoidedPlants(Plant avoidedPlant) {
+        companionPlants.add(avoidedPlant);
+    }
 }
