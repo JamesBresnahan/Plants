@@ -6,13 +6,14 @@
     <nav th:replace="fragments :: navigation"></nav>
     <h3 th:text="${title}">Default</h3>
 
-    <div th:each="plant : ${plants}" class="checkbox">
-        <input type="checkbox" name="plantId" th:value="${plant.id}" th:id="${plant.id}"/>
-        <label th:for="${plant.id}" th:text="${plant.name}"></label>
-        <br />
-    </div>
+    <form method="post">
+        <div th:each="plant : ${plants}" class="checkbox">
+            <input type="checkbox" name="plantId" th:value="${plant.id}" th:id="${plant.id}"/>
+            <label th:for="${plant.id}" th:text="${plant.name}"></label>
+            <br />
+        </div>
 
-    <input type="submit" value="Add to Your Garden" />
-
+        <input type="submit" value="Add to Your Garden" />
+    </form>
 </body>
 </html>

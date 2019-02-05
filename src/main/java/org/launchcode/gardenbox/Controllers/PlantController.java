@@ -1,5 +1,6 @@
 package org.launchcode.gardenbox.Controllers;
 
+import org.launchcode.gardenbox.models.GardenBox;
 import org.launchcode.gardenbox.models.Plant;
 import org.launchcode.gardenbox.models.PlantType;
 import org.launchcode.gardenbox.models.data.PlantDao;
@@ -10,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,17 +20,28 @@ public class PlantController {
     @Autowired
     private PlantDao plantDao;
 
+    GardenBox gardenBox = new GardenBox();
+
     @RequestMapping(value = "")
     public String index (Model model) {
         model.addAttribute("title", "Plants");
+        model.addAttribute("plants", gardenBox.getPlants());
         return "plants/index";
     }
 
-    @RequestMapping(value = "list")
+    @RequestMapping(value = "list", method=RequestMethod.GET)
     public String listPlants (Model model) {
         model.addAttribute("title", "Add a Plant");
         model.addAttribute("plants", plantDao.findAll());
         return "plants/list";
+    }
+
+    @RequestMapping(value = "list", method=RequestMethod.POST)
+    public String listPlants (Model model, @RequestParam int plantId) {
+
+        Plant newPlant = plantDao.findOne(plantId);
+        gardenBox.addPlant(newPlant);
+        return "redirect:";
     }
 
     @RequestMapping(value = "search")

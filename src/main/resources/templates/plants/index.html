@@ -6,5 +6,15 @@
     <nav th:replace="fragments :: navigation"></nav>
     <h3 th:text="${title}">Default</h3>
 
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">MY GARDEN BOX</h5>
+            <p class="card-text">Here are your plants!</p>
+        </div>
+        <ul th:each="plant: ${plants}" class="list-group list-group-flush">
+            <li th:value="${plant.id}" th:text="${plant.name}" class="list-group-item">Cras justo odio</li>
+        </ul>
+    </div>
+
 </body>
 </html>
