@@ -32,8 +32,8 @@
     </div>
 
     <div class="form-group">
-        <label th:for="avoided">Avoived Pairings:</label>
-        <select multiple="form-control" name="avoided">
+        <label th:for="avoidedsId">Avoived Pairings:</label>
+        <select multiple="form-control" name="avoidedsId">
             <option th:each="plant: ${plants}"
                     th:text="${plant.name}"
                     th:value="${plant.id}"></option>

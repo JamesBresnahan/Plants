@@ -3,6 +3,7 @@ package org.launchcode.gardenbox.Controllers;
 import org.launchcode.gardenbox.models.GardenBox;
 import org.launchcode.gardenbox.models.Plant;
 import org.launchcode.gardenbox.models.PlantType;
+import org.launchcode.gardenbox.models.data.GardenBoxDao;
 import org.launchcode.gardenbox.models.data.PlantDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,11 @@ public class PlantController {
     @Autowired
     private PlantDao plantDao;
 
+    @Autowired
+    private GardenBoxDao gardenDao;
+
     GardenBox gardenBox = new GardenBox();
+
 
     @RequestMapping(value = "")
     public String index (Model model) {
@@ -61,10 +66,18 @@ public class PlantController {
     }
 
     @RequestMapping(value = "create", method= RequestMethod.POST)
-    public String processAddPlantForm (@ModelAttribute @Valid Plant newPlant, @RequestParam int companionsId, @RequestParam PlantType type, Model model, Errors errors) {
+    public String processAddPlantForm (@ModelAttribute @Valid Plant newPlant, @RequestParam(value = "companionsId", required=false, defaultValue = "0") int [] companionsId, @RequestParam(value = "avoidedsId", required=false, defaultValue = "0") int [] avoidedsId, @RequestParam PlantType type, Model model, Errors errors) {
 
-        Plant companion = plantDao.findOne(companionsId);
+
         newPlant.setType(type);
+        for (int companionId : companionsId) {
+            Plant companionPlant = plantDao.findOne(companionId);
+            newPlant.addCompanionPlants(companionPlant);
+        }
+        for (int avoidedId : avoidedsId) {
+            Plant avoidedPlant = plantDao.findOne(avoidedId);
+            newPlant.addAvoidedPlants(avoidedPlant);
+        }
 
 
         if (errors.hasErrors()){
@@ -76,6 +89,7 @@ public class PlantController {
         plantDao.save(newPlant);
         return "redirect:";
     }
+
 
 
 
