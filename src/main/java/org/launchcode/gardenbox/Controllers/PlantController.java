@@ -49,13 +49,6 @@ public class PlantController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "search")
-    public String searchPlants (Model model) {
-        model.addAttribute("title", "Search Plants");
-        return "plants/search";
-    }
-
-
     @RequestMapping(value = "create", method= RequestMethod.GET)
     public String displayCreatePlantForm (Model model) {
         model.addAttribute("title", "Create a Plant");

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+<h3 th:text="${title}">Default</h3>
+<form method="post">
+    <div class="search-container">
+        <input type="text" name="name"/>
+    </div>
+
+    <input type="submit" value="Search" />
+</form>
+<form method="post">
+    <div th:each="plant : ${plants}" class="checkbox">
+        <input type="checkbox" name="plantId" th:value="${plant.id}" th:id="${plant.id}"/>
+        <label th:for="${plant.id}" th:text="${plant.name}"></label>
+        <br />
+    </div>
+
+    <input type="submit" value="Add to Your Garden" />
+</form>
+</body>
+</html>
