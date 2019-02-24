@@ -1,5 +1,6 @@
 package org.launchcode.gardenbox.Controllers;
 
+import org.launchcode.gardenbox.models.PlantType;
 import org.launchcode.gardenbox.models.data.GardenBoxDao;
 import org.launchcode.gardenbox.models.data.PlantDao;
 import org.launchcode.gardenbox.models.Plant;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("search")
+@RequestMapping("")
 public class SearchController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class SearchController {
     @Autowired
     private GardenBoxDao gardenBoxDao;
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "search")
     public String index(Model model){
 
         model.addAttribute("title", "search");
@@ -32,13 +33,47 @@ public class SearchController {
 
     }
 
-    @RequestMapping(value="", method = RequestMethod.POST)
+    @RequestMapping(value="search/form")
+    public String search(Model model){
+
+        model.addAttribute("title", "search");
+        return "search/form";
+    }
+
+    @RequestMapping(value="search/form", method = RequestMethod.POST)
     public String index(Model model, @RequestParam String name){
 
         List<Plant> plants = plantDao.findByName(name);
+        model.addAttribute("title", "search");
         model.addAttribute("plants", plants);
         return "search/index";
     }
+
+    @RequestMapping(value="vegetable")
+    public String listVegetable(Model model){
+
+        List<Plant> plants = plantDao.findByType(PlantType.VEGETABLE);
+        model.addAttribute("plants", plants);
+        return "search/index";
+    }
+
+    @RequestMapping(value="fruit")
+    public String listFruit(Model model){
+
+        List<Plant> plants = plantDao.findByType(PlantType.FRUIT);
+        model.addAttribute("plants", plants);
+        return "search/index";
+    }
+
+    @RequestMapping(value="herb")
+    public String listHerb(Model model){
+
+        List<Plant> plants = plantDao.findByType(PlantType.HEB);
+        model.addAttribute("plants", plants);
+        return "search/index";
+    }
+
+
 
 
 

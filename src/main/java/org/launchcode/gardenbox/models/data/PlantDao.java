@@ -1,6 +1,7 @@
 package org.launchcode.gardenbox.models.data;
 
 import org.launchcode.gardenbox.models.Plant;
+import org.launchcode.gardenbox.models.PlantType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,7 @@ import java.util.List;
 public interface PlantDao extends CrudRepository<Plant, Integer> {
 
     List<Plant> findByName(String name);
+
+    List<Plant> findByType(PlantType type);
 
 }
