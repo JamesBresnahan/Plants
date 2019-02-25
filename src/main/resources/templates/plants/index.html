@@ -12,9 +12,33 @@
             <p class="card-text">Here are your plants!</p>
         </div>
         <ul th:each="plant: ${plants}" class="list-group list-group-flush">
-            <li th:value="${plant.id}" th:text="${plant.name}" class="list-group-item">Cras justo odio</li>
+            <li th:value="${plant.id}" th:text="${plant.name}" class="list-group-item"></li>
         </ul>
     </div>
+
+    <div class="d-flex justify-content-end">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Companion Plants</h5>
+            </div>
+            <ul th:each="companionPlant: ${companionPlants}" class="list-group list-group-flush">
+                <li th:value="${companionPlant.id}" th:text="${companionPlant.name}" class="list-group-item"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Plants To Avoid</h5>
+            </div>
+            <ul th:each="avoidedPlant: ${avoidedPlants}" class="list-group list-group-flush">
+                <li th:value="${avoidedPlant.id}" th:text="${avoidedPlant.name}" class="list-group-item"></li>
+            </ul>
+        </div>
+    </div>
+
+
 
 </body>
 </html>

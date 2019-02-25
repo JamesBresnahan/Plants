@@ -44,7 +44,6 @@ public class SearchController {
     public String index(Model model, @RequestParam String name){
 
         List<Plant> plants = plantDao.findByName(name);
-        model.addAttribute("title", "search");
         model.addAttribute("plants", plants);
         return "search/index";
     }

@@ -20,10 +20,10 @@ public class Plant {
 
     private PlantType type;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Plant> companionPlants = new ArrayList<Plant>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Plant> avoidedPlants= new ArrayList<Plant>();
 
     public List<Plant> getCompanionPlants() {

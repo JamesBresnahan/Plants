@@ -29,8 +29,16 @@ public class PlantController {
 
     @RequestMapping(value = "")
     public String index (Model model) {
+
         model.addAttribute("title", "Plants");
         model.addAttribute("plants", gardenBox.getPlants());
+
+        List<Plant> allCompanionPlants = gardenBox.getCompanionPlants();
+        List<Plant> allAvoidedPlants = gardenBox.getAvoidedPlants();
+
+        model.addAttribute("companionPlants", allCompanionPlants);
+        model.addAttribute("avoidedPlants", allAvoidedPlants);
+
         return "plants/index";
     }
 
@@ -38,6 +46,8 @@ public class PlantController {
     public String listPlants (Model model) {
         model.addAttribute("title", "Add a Plant");
         model.addAttribute("plants", plantDao.findAll());
+
+
         return "plants/list";
     }
 
