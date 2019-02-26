@@ -52,7 +52,11 @@ public class PlantController {
     }
 
     @RequestMapping(value = "list", method=RequestMethod.POST)
-    public String listPlants (Model model, @RequestParam int plantId) {
+    public String listPlants (Model model, @RequestParam(value = "plantId", required=false, defaultValue = "0") int plantId) {
+
+        if (plantId==0){
+            return "plants/index";
+        }
 
         Plant newPlant = plantDao.findOne(plantId);
         gardenBox.addPlant(newPlant);
@@ -93,6 +97,11 @@ public class PlantController {
         return "redirect:";
     }
 
+    @RequestMapping(value="clear", method = RequestMethod.POST)
+    public String clearGardenBox (){
+        gardenBox.clearGardenBox();
+        return "redirect:";
+    }
 
 
 

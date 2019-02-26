@@ -32,6 +32,10 @@ public class GardenBox {
         plants.add(newPlant);
     }
 
+    public void clearGardenBox(){
+        plants.clear();
+    }
+
     public List<Plant> getCompanionPlants(){
 
         List<Plant> allCompanionPlants = new ArrayList<Plant>();
