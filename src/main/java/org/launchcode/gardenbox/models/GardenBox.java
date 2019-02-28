@@ -58,23 +58,24 @@ public class GardenBox {
 
     public List<Plant> getCompanionPlants(){
 
-        List<Plant> allAvoidedPlants = this.getAvoidedPlants();
-
         List<Plant> allPlants = this.getPlants();
-
+        List<Integer> allAvoidedPlantsIds=this.getAvoidedPlantsIds();
+        List<Integer> allCompanionPlantsIds = this.getCompanionPlantsIds();
         for (Plant plant : allPlants){
             List<Plant> companionPlants = plant.getCompanionPlants();
-            List<Integer> allCompanionPlantsIds = this.getCompanionPlantsIds();
-            List<Integer> allAvoidedPlantsIds=this.getAvoidedPlantsIds();
+
             for (Plant companionPlant : companionPlants) {
+                if (this.getAvoidedPlantsIds().contains(companionPlant.getId())) {
+                    allCompanionPlants.remove(companionPlant);
+                    continue;
+                }
+
                 if(this.getCompanionPlantsIds().contains(companionPlant.getId())){
                     continue;
                 }
 
                 allCompanionPlants.add(companionPlant);
-                if (this.getAvoidedPlantsIds().contains(companionPlant.getId())) {
-                    allCompanionPlants.remove(companionPlant);
-                }
+
             }
         }
 
