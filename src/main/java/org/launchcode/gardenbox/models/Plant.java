@@ -1,6 +1,7 @@
 package org.launchcode.gardenbox.models;
 
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,10 +22,24 @@ public class Plant {
     private PlantType type;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="tbl_companionPlants",
+            joinColumns=@JoinColumn(name="plantId"),
+            inverseJoinColumns=@JoinColumn(name="companionId"))
     private List<Plant> companionPlants = new ArrayList<Plant>();
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="tbl_avoidedPlants",
+            joinColumns=@JoinColumn(name="plantId"),
+            inverseJoinColumns=@JoinColumn(name="avoidedId"))
     private List<Plant> avoidedPlants= new ArrayList<Plant>();
+
+    public Plant (){
+
+    }
+
+    public Plant (PlantType type){
+        this.type= type;
+    }
 
     public List<Plant> getCompanionPlants() {
         return companionPlants;
@@ -46,13 +61,6 @@ public class Plant {
         this.avoidedPlants = avoidedPlants;
     }
 
-    public Plant (){
-
-    }
-
-    public Plant (PlantType type){
-        this.type= type;
-    }
 
     public int getId() {
         return id;
