@@ -33,6 +33,9 @@ public class Plant {
             inverseJoinColumns=@JoinColumn(name="avoidedId"))
     private List<Plant> avoidedPlants= new ArrayList<Plant>();
 
+    //@ManyToMany(mappedBy = "plants")
+    //private List<GardenBox> gardenBoxes;
+
     public Plant (){
 
     }
@@ -51,6 +54,10 @@ public class Plant {
 
     public void setCompanionPlants(List<Plant> companionPlants){this.companionPlants = companionPlants;}
 
+    public void clearCompanionPlants(){
+        companionPlants.clear();
+    }
+
     public List<Plant> getAvoidedPlants() {
         return avoidedPlants;
     }
@@ -59,6 +66,10 @@ public class Plant {
 
     public void setAvoidedPlants(List<Plant> avoidedPlants) {
         this.avoidedPlants = avoidedPlants;
+    }
+
+    public void clearAvoidedPlants(){
+        avoidedPlants.clear();
     }
 
 

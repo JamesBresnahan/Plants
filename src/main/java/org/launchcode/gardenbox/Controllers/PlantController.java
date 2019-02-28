@@ -3,7 +3,6 @@ package org.launchcode.gardenbox.Controllers;
 import org.launchcode.gardenbox.models.GardenBox;
 import org.launchcode.gardenbox.models.Plant;
 import org.launchcode.gardenbox.models.PlantType;
-import org.launchcode.gardenbox.models.data.GardenBoxDao;
 import org.launchcode.gardenbox.models.data.PlantDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,14 +20,11 @@ public class PlantController {
     @Autowired
     private PlantDao plantDao;
 
-    @Autowired
-    private GardenBoxDao gardenDao;
-
     GardenBox gardenBox = new GardenBox();
-
 
     @RequestMapping(value = "")
     public String index (Model model) {
+
 
         model.addAttribute("title", "Plants");
         model.addAttribute("plants", gardenBox.getPlants());

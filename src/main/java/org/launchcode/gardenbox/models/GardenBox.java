@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@Entity
+
 public class GardenBox {
 
-    @Id
-    @GeneratedValue
+
     private int id;
 
-    @ManyToMany
     private List<Plant> plants = new ArrayList<Plant>();
 
     public GardenBox(){

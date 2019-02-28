@@ -1,7 +1,6 @@
 package org.launchcode.gardenbox.Controllers;
 
 import org.launchcode.gardenbox.models.PlantType;
-import org.launchcode.gardenbox.models.data.GardenBoxDao;
 import org.launchcode.gardenbox.models.data.PlantDao;
 import org.launchcode.gardenbox.models.Plant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ public class SearchController {
 
     @Autowired
     private PlantDao plantDao;
-
-    @Autowired
-    private GardenBoxDao gardenBoxDao;
 
     @RequestMapping(value = "search")
     public String index(Model model){
