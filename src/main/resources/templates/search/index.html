@@ -21,14 +21,16 @@
     </li>
 </ul>
 
-<form method="post" action="list">
-    <input type="submit" value="Add to Your Garden" />
-    <div th:each="plant : ${plants}" class="checkbox">
-        <input type="checkbox" name="plantId" th:value="${plant.id}" th:id="${plant.id}"/>
-        <label th:for="${plant.id}" th:text="${plant.name}"></label>
+<form method="post">
+    <input type="submit" value="Add to Your Garden" formaction="list" />
+    <div th:each="plant : ${plants}" class="form-check">
+        <input class="form-check-input" type="radio" name="plantId" th:value="${plant.id}" th:id="${plant.id}"/>
+        <a th:href="'/update/'+ ${plant.id}" th:text="${plant.name}"></a>
         <br />
     </div>
 
 </form>
+
+
 </body>
 </html>

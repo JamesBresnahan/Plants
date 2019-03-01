@@ -32,8 +32,8 @@ public class PlantController {
         List<Plant> allCompanionPlants = gardenBox.getCompanionPlants();
         List<Plant> allAvoidedPlants = gardenBox.getAvoidedPlants();
 
-        model.addAttribute("companionPlants", allCompanionPlants);
-        model.addAttribute("avoidedPlants", allAvoidedPlants);
+        model.addAttribute("companionPlants",gardenBox.getCompanionPlants());
+        model.addAttribute("avoidedPlants", gardenBox.getAvoidedPlants());
 
         return "plants/index";
     }
@@ -96,6 +96,8 @@ public class PlantController {
     @RequestMapping(value="clear", method = RequestMethod.POST)
     public String clearGardenBox (){
         gardenBox.clearGardenBox();
+        gardenBox.clearAvoidedPlants();
+        gardenBox.clearCompanionPlants();;
         return "redirect:";
     }
 

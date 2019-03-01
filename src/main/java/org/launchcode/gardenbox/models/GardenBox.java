@@ -40,6 +40,10 @@ public class GardenBox {
         plants.clear();
     }
 
+    public void clearCompanionPlants(){allCompanionPlants.clear();}
+
+    public void clearAvoidedPlants(){allAvoidedPlants.clear();}
+
     public List<Integer> getCompanionPlantsIds(){
         List<Integer> allCompanionPlantsIds = new ArrayList<>();
         for(Plant companionPlant: allCompanionPlants){
@@ -86,6 +90,7 @@ public class GardenBox {
 
 
         List<Plant> allPlants = this.getPlants();
+
 
         for (Plant plant : allPlants){
             List<Integer> allAvoidedPlantsIds = this.getAvoidedPlantsIds();
