@@ -107,7 +107,7 @@ public class SearchController {
             model.addAttribute("plants", plantDao.findAll());
             return "plants/update/{plantId}";
         }
-
+        plantDao.save(plant);
         return "redirect:/search";
 
     }
