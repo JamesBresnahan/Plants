@@ -25,7 +25,8 @@
     <input type="submit" value="Add to Your Garden" formaction="list" />
     <div th:each="plant : ${plants}" class="form-check">
         <input class="form-check-input" type="radio" name="plantId" th:value="${plant.id}" th:id="${plant.id}"/>
-        <a th:href="'/update/'+ ${plant.id}" th:text="${plant.name}"></a>
+        <label class="form-check-label" th:for="${plant.id}" th:text="${plant.name}"></label>
+        <a th:href="'/update/'+ ${plant.id}">edit</a>
         <br />
     </div>
 
