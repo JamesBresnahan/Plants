@@ -29,8 +29,8 @@ public class PlantController {
         model.addAttribute("title", "Plants");
         model.addAttribute("plants", gardenBox.getPlants());
 
-        List<Plant> allCompanionPlants = gardenBox.getCompanionPlants();
-        List<Plant> allAvoidedPlants = gardenBox.getAvoidedPlants();
+        //List<Plant> allCompanionPlants = gardenBox.getCompanionPlants();
+        //List<Plant> allAvoidedPlants = gardenBox.getAvoidedPlants();
 
         model.addAttribute("companionPlants",gardenBox.getCompanionPlants());
         model.addAttribute("avoidedPlants", gardenBox.getAvoidedPlants());

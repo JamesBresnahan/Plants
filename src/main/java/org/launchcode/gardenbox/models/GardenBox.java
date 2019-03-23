@@ -36,6 +36,7 @@ public class GardenBox {
         plants.add(newPlant);
     }
 
+
     public void clearGardenBox(){
         plants.clear();
     }
@@ -43,6 +44,28 @@ public class GardenBox {
     public void clearCompanionPlants(){allCompanionPlants.clear();}
 
     public void clearAvoidedPlants(){allAvoidedPlants.clear();}
+
+    public void removeCompanionPlants(List<Integer>removeIds){
+        //use a workaround to avoid a Concurrent Modification Exception
+        List<Plant>toRemove = new ArrayList<>();
+
+        for (Plant plant:allCompanionPlants){
+            if(removeIds.contains(plant.getId())){
+                toRemove.add(plant);
+            }
+        }
+        allCompanionPlants.removeAll(toRemove);
+    }
+
+
+    public List<Integer> getPlantIds(){
+        List<Plant> allPlants = this.getPlants();
+        List<Integer> allPlantIds = new ArrayList<>();
+        for (Plant plant: allPlants){
+            allPlantIds.add(plant.getId());
+        }
+        return allPlantIds;
+    }
 
     public List<Integer> getCompanionPlantsIds(){
         List<Integer> allCompanionPlantsIds = new ArrayList<>();
@@ -63,8 +86,7 @@ public class GardenBox {
     public List<Plant> getCompanionPlants(){
 
         List<Plant> allPlants = this.getPlants();
-        List<Integer> allAvoidedPlantsIds=this.getAvoidedPlantsIds();
-        List<Integer> allCompanionPlantsIds = this.getCompanionPlantsIds();
+
         for (Plant plant : allPlants){
             List<Plant> companionPlants = plant.getCompanionPlants();
 
@@ -82,6 +104,22 @@ public class GardenBox {
 
             }
         }
+
+        List<Integer> toRemove = new ArrayList<>();
+
+        //Remove plant from suggested companion if something in planter box is one of its avoideds
+        for (Plant companionPlant:allCompanionPlants){
+            List<Plant> avoidedPlants = companionPlant.getAvoidedPlants();
+            List<Integer> plantIds = this.getPlantIds();
+            for (Plant avoidedPlant:avoidedPlants){
+                if(plantIds.contains(avoidedPlant.getId())){
+                    //use a workaround to avoid a Concurrent Modification Exception
+                    toRemove.add(companionPlant.getId());
+                }
+
+            }
+        }
+        removeCompanionPlants(toRemove);
 
         return allCompanionPlants;
     }

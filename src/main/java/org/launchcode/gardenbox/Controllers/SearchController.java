@@ -25,20 +25,20 @@ public class SearchController {
     @RequestMapping(value = "search")
     public String index(Model model){
 
-        model.addAttribute("title", "search");
+        //model.addAttribute("title", "search");
         model.addAttribute("plants",plantDao.findAll());
         return "search/index";
 
     }
 
-    @RequestMapping(value="search/form")
+    @RequestMapping(value="form")
     public String search(Model model){
 
         model.addAttribute("title", "search");
         return "search/form";
     }
 
-    @RequestMapping(value="search/form", method = RequestMethod.POST)
+    @RequestMapping(value="form", method = RequestMethod.POST)
     public String index(Model model, @RequestParam String name){
 
         List<Plant> plants = plantDao.findByName(name);
