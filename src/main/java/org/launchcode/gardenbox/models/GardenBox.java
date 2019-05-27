@@ -36,6 +36,8 @@ public class GardenBox {
         plants.add(newPlant);
     }
 
+    public void removePlant(Plant newPlant) {plants.remove(newPlant);}
+
 
     public void clearGardenBox(){
         plants.clear();
@@ -87,6 +89,7 @@ public class GardenBox {
 
         List<Plant> allPlants = this.getPlants();
 
+        //add companion plants, filter out any companions that are avoided of something in planter box, do not list same companion multiple times
         for (Plant plant : allPlants){
             List<Plant> companionPlants = plant.getCompanionPlants();
 

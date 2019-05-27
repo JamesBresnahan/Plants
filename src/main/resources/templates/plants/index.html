@@ -12,19 +12,23 @@
          <div class="row">
 
              <div class="col-2">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">MY GARDEN BOX</h5>
-            <p class="card-text">Here are your plants!</p>
-        </div>
-        <form method="post" action="clear">
-            <input type="submit" value="Clear Garden Box" />
-        </form>
-        <ul th:each="plant: ${plants}" class="list-group list-group-flush">
-            <li th:value="${plant.id}" th:text="${plant.name}" class="list-group-item"></li>
-        </ul>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">MY GARDEN BOX</h5>
+                        <p class="card-text">Here are your plants!</p>
+                    </div>
+                    <form method="post" action="clear">
+                        <input type="submit" value="Clear Garden Box" />
+                    </form>
+                   <form method="get" action="remove">
+                        <input type="submit" value="Remove Individual Plants" />
+                    </form>
 
-    </div>
+                    <ul th:each="plant: ${plants}" class="list-group list-group-flush">
+                        <li name ="plantId" th:value="${plant.id}" th:text="${plant.name}" class="list-group-item"></li>
+                    </ul>
+
+                </div>
              </div>
 <div class="col-6">
     <div class="d-flex justify-content-end">

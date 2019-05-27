@@ -59,6 +59,28 @@ public class PlantController {
         return "redirect:";
     }
 
+    @RequestMapping(value="remove", method=RequestMethod.GET)
+    public String removePlant(Model model){
+        model.addAttribute("title", "Remove Plants from Garden Box");
+        model.addAttribute("plants", gardenBox.getPlants());
+        return "plants/remove";
+    }
+
+    @RequestMapping(value="remove", method=RequestMethod.POST)
+    public String removePlant(Model model, @RequestParam(value= "plantId", required=false, defaultValue= "0") int plantId){
+        Plant newPlant = plantDao.findOne(plantId);
+        for (Plant plant:gardenBox.getPlants()){
+            if(plant.getId()==plantId){
+                gardenBox.removePlant(plant);
+                break;
+            }
+
+            }
+        gardenBox.clearAvoidedPlants();
+        gardenBox.clearCompanionPlants();;
+        return "redirect:";
+    }
+
     @RequestMapping(value = "create", method= RequestMethod.GET)
     public String displayCreatePlantForm (Model model) {
         model.addAttribute("title", "Create a Plant");
@@ -100,6 +122,7 @@ public class PlantController {
         gardenBox.clearCompanionPlants();;
         return "redirect:";
     }
+
 
 
 
