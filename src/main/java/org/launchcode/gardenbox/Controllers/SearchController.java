@@ -46,29 +46,15 @@ public class SearchController {
         return "search/index";
     }
 
-    @RequestMapping(value="vegetable")
-    public String listVegetable(Model model){
+    @GetMapping(value="{type}")
+    public String listVegetable(Model model, @PathVariable String type){
 
-        List<Plant> plants = plantDao.findByType(PlantType.VEGETABLE);
+        List<Plant> plants = plantDao.findByType(PlantType.valueOf(type.toUpperCase()));
         model.addAttribute("plants", plants);
+
         return "search/index";
     }
 
-    @RequestMapping(value="fruit")
-    public String listFruit(Model model){
-
-        List<Plant> plants = plantDao.findByType(PlantType.FRUIT);
-        model.addAttribute("plants", plants);
-        return "search/index";
-    }
-
-    @RequestMapping(value="herb")
-    public String listHerb(Model model){
-
-        List<Plant> plants = plantDao.findByType(PlantType.HEB);
-        model.addAttribute("plants", plants);
-        return "search/index";
-    }
 
     @RequestMapping(value="update/{plantId}", method= RequestMethod.GET)
     public String displayUpdate (Model model, @PathVariable int plantId) {

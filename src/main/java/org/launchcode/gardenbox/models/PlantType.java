@@ -8,7 +8,7 @@ public enum PlantType {
 
     VEGETABLE ("Vegetable"),
     FRUIT ("Fruit"),
-    HEB ("Herb");
+    HERB ("Herb");
 
 
     private final String name;
