@@ -22,11 +22,21 @@ public class SearchController {
     @Autowired
     private PlantDao plantDao;
 
+
     @RequestMapping(value = "search")
     public String index(Model model){
 
-        //model.addAttribute("title", "search");
+        List<String> types = new ArrayList<>();
+        types.add("Vegetable");
+        types.add("Fruit");
+        types.add("Herb");
+
+        model.addAttribute("types", types);
         model.addAttribute("plants",plantDao.findAll());
+
+        System.out.println(types);
+        System.out.println(plantDao.findAll());
+        System.out.println("hello");
         return "search/index";
 
     }
@@ -50,7 +60,15 @@ public class SearchController {
     public String listVegetable(Model model, @PathVariable String type){
 
         List<Plant> plants = plantDao.findByType(PlantType.valueOf(type.toUpperCase()));
+        List<String> types = new ArrayList<>();
+
+        types.add("Vegetable");
+        types.add("Fruit");
+        types.add("Herb");
+
+        model.addAttribute("types", types);
         model.addAttribute("plants", plants);
+
 
         return "search/index";
     }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
@@ -7,10 +8,21 @@
 <h3 th:text="${title}">Default</h3>
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="/form" role="tab" aria-controls="pills-home" aria-selected="true">SEARCH</a>
-    </li>
+    <div class="row">
+            <li class="nav-item col-5">
+                <a class="nav-link active" id="pills-home-tab" role="tab" aria-controls="pills-home" aria-selected="true" href="/form">SEARCH</a>
+            </li>
+            <li class="dropdown col-7" >
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter by Type
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a th:each="type : ${types}" class = "dropdown-item" th:value="${type}" th:text="${type}" th:href="${type}"></a>
+                </div>
+            </li>
+    </div>
 </ul>
+
 
 <form method="post">
     <input type="submit" value="Add to Your Garden" formaction="list" />
@@ -23,6 +35,9 @@
 
 </form>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>
